@@ -61,6 +61,8 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+// Function to display movements on the app
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
 
