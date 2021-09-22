@@ -73,7 +73,7 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov} €</div>
       </div>`;
 
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -82,11 +82,16 @@ const displayMovements = function (movements) {
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
 
-displayMovements(account1.movements);
-calcDisplayBalance(account1.movements);
+const calcDisplaySummary = function (movements) {
+  const income = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumIn.textContent = `${income} €`;
+};
 
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
@@ -97,5 +102,9 @@ const createUsername = function (accs) {
       .join("");
   });
 };
+
+displayMovements(account1.movements);
+calcDisplayBalance(account1.movements);
+calcDisplaySummary(account1.movements);
 
 createUsername(accounts);
