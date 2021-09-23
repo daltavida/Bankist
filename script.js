@@ -122,3 +122,13 @@ calcDisplayBalance(account1.movements);
 calcDisplaySummary(account1.movements);
 
 createUsername(accounts);
+
+let currentAccount;
+
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+});
