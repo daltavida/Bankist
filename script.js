@@ -117,10 +117,6 @@ const createUsername = function (accs) {
   });
 };
 
-displayMovements(account1.movements);
-calcDisplayBalance(account1.movements);
-calcDisplaySummary(account1.movements);
-
 createUsername(accounts);
 
 let currentAccount;
@@ -137,4 +133,8 @@ btnLogin.addEventListener("click", function (e) {
     }`;
     containerApp.style.opacity = 100;
   }
+
+  displayMovements(currentAccount.movements);
+  calcDisplayBalance(currentAccount.movements);
+  calcDisplaySummary(currentAccount.movements);
 });
