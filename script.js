@@ -129,6 +129,18 @@ const updateUI = function (acc) {
 
 let currentAccount;
 
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
+const now = new Date();
+const day = now.getDate();
+const month = now.getMonth();
+const year = now.getFullYear();
+const hour = now.getHours();
+const minute = now.getMinutes();
+console.log(currentDate);
+
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
   currentAccount = accounts.find(
