@@ -135,11 +135,12 @@ containerApp.style.opacity = 100;
 
 const now = new Date();
 const day = now.getDate();
-const month = now.getMonth();
+const month = now.getMonth() + 1;
 const year = now.getFullYear();
 const hour = now.getHours();
 const minute = now.getMinutes();
-console.log(currentDate);
+
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
 
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
