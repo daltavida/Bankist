@@ -180,13 +180,20 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 100;
 
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const minute = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      weekday: "long",
+    };
 
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
+    const locale = currentAccount.locale;
+
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
+      now
+    );
 
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
