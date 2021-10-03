@@ -86,6 +86,13 @@ const formatMovementDate = function (date, locale) {
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+  }).format(value);
+};
+
 // Function to display movements on the app
 
 const displayMovements = function (acc, sort = false) {
@@ -102,10 +109,7 @@ const displayMovements = function (acc, sort = false) {
 
     const displayDate = formatMovementDate(date, acc.locale);
 
-    const formattedMovement = new Intl.NumberFormat(acc.locale, {
-      style: "currency",
-      currency: acc.currency,
-    }).format(mov);
+    const formattedMovement = formatCur(mov, acc.locale, acc.currency);
 
     const html = `
       <div class="movements__row">
@@ -122,7 +126,12 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (account) {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance.toFixed(2)} €`;
+
+  labelBalance.textContent = formatCur(
+    account.balance,
+    acc.locale,
+    acc.currency
+  );
 };
 
 const calcDisplaySummary = function (acc) {
