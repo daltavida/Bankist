@@ -104,7 +104,7 @@ const displayMovements = function (acc, sort = false) {
 
     const formattedMovement = new Intl.NumberFormat(acc.locale, {
       style: "currency",
-      currency: "USD",
+      currency: acc.currency,
     }).format(mov);
 
     const html = `
