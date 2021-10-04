@@ -174,6 +174,16 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogoutTimer = function () {
+  let time = 120;
+  setInterval(() => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+    time--;
+  }, 1000);
+};
+
 let currentAccount;
 
 btnLogin.addEventListener("click", function (e) {
@@ -205,7 +215,7 @@ btnLogin.addEventListener("click", function (e) {
 
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-
+    startLogoutTimer();
     updateUI(currentAccount);
   }
 });
