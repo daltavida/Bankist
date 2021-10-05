@@ -175,8 +175,7 @@ const updateUI = function (acc) {
 };
 
 const startLogoutTimer = function () {
-  let time = 300;
-  const timer = setInterval(() => {
+  const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
     const sec = String(time % 60).padStart(2, 0);
     labelTimer.textContent = `${min}:${sec}`;
@@ -187,7 +186,12 @@ const startLogoutTimer = function () {
       labelWelcome.textContent = "Log in to get started";
       containerApp.style.opacity = 0;
     }
-  }, 1000);
+  };
+
+  let time = 300;
+
+  tick();
+  const timer = setInterval(tick, 1000);
 };
 
 let currentAccount;
